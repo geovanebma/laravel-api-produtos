@@ -3,20 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Empresa;
 
 class Produto extends Model
 {
-    protected $table = 'produtos'; // Nome da tabela no banco de dados
-
-    protected $primaryKey = 'cod_produto'; // Nome da chave primária na tabela
+    protected $table = 'produtos';
 
     protected $fillable = [
-        'cod_empresa', 'nome', 'descricao', 'valor'
-    ]; // Campos que podem ser atribuídos em massa
+        'cod_empresa',
+        'nome',
+        'descricao',
+        'valor'
+    ];
 
-    // Relacionamento com a tabela de empresas
     public function empresa()
     {
-        return $this->belongsTo(Empresa::class, 'cod_empresa');
+        return $this->belongsTo(Empresa::class, 'id');
     }
 }
