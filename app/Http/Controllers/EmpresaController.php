@@ -3,19 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Empresa;
 
-class Empresa extends Controller
+
+class EmpresaController extends Controller
 {
     public function index()
     {
         $empresas = Empresa::all();
         return response()->json($empresas);
-    }
-
-    public function show($id)
-    {
-        $empresa = Empresa::findOrFail($id);
-        return response()->json($empresa);
     }
 
     public function store(Request $request)
@@ -26,6 +22,12 @@ class Empresa extends Controller
         $empresa->save();
 
         return response()->json($empresa, 201);
+    }
+
+    public function show($id)
+    {
+        $empresa = Empresa::findOrFail($id);
+        return response()->json($empresa);
     }
 
     public function update(Request $request, $id)
